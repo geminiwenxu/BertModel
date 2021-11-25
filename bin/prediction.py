@@ -6,6 +6,7 @@ from sklearn.metrics import classification_report
 from transformers import BertTokenizer
 import numpy as np
 from bachelorarbeit.model.classifier import SentimentClassifier
+from bachelorarbeit.model import logger
 
 
 def get_config(path: str) -> dict:
@@ -14,18 +15,20 @@ def get_config(path: str) -> dict:
     return conf
 
 
-if __name__ == "__main__":
-    path = '/Users/wenxu/PycharmProjects/BertModel/models/multi_all_model_opt.pth'
+def prediction(model_path, file_path):
     config = get_config('/../config/config.yaml')
     class_names = config['class_names']
     dropout_ratio = config['dropout_ratio']
-    device = torch.device("cpu")
-    df = pd.read_csv('/Users/wenxu/PycharmProjects/BertModel/text_report/test_validation.csv', sep=';',
+    if torch.cuda.is_available():
+        logger.info("CUDA is available, setting up Tensors to work with CUDA")
+        device = torch.device("cuda")
+    else:
+        logger.info("CUDA is NOT available, setting up Tensors to work with CPU")
+        device = torch.device("cpu")
+    df = pd.read_csv(file_path, sep=';',
                      header=None, index_col=False, names=['actual', 'text', 'lang', 'source'])
-    # names=['index', 'num', 'actual', 'prediction', 'probability', 'text', 'source'])
-    # print(df)
     model = SentimentClassifier(len(class_names), dropout_ratio)
-    model.load_state_dict(torch.load(path, map_location=lambda storage, loc: storage).module.state_dict())
+    model.load_state_dict(torch.load(model_path, map_location=lambda storage, loc: storage).module.state_dict())
     model = model.to(device)
     tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-cased', do_lower_case=False)
     predict = []
@@ -56,4 +59,13 @@ if __name__ == "__main__":
     report = classification_report(df.actual.to_list(), predict, target_names=class_names)
     print(report)
     correct_classified = pd.DataFrame(L)
-    correct_classified.to_csv('test', index=False)
+    correct_classified.to_csv('correct_classification.csv', index=False)
+    return None
+
+
+if __name__ == "__main__":
+    config = get_config('/../config/config.yaml')
+    model_path = resource_filename(__name__, config['model_path']['path'])
+    print(model_path)
+    log_path = resource_filename(__name__, config['logs']['path'])
+    print(log_path)

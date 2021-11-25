@@ -52,3 +52,8 @@ models:
 logs:
   path: ../logs
   level: INFO
+
+model_path:
+  path: /../models/multi_all_model_opt.pth
+file_path:
+  path: /../text_report/test_validation.csv

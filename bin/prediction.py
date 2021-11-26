@@ -47,7 +47,7 @@ def prediction(model_path, file_path):
         attention_mask = encoded_review['attention_mask'].to(device)
         output = model(input_ids, attention_mask)
         _, prediction = torch.max(output, dim=1)
-        pred = np.float64(prediction.numpy()[0])
+        pred = np.float64(prediction.cpu().detach().numpy()[0])
         actual = np.float64(row['actual'])
 
         if pred == actual:

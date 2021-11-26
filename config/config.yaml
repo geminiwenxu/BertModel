@@ -56,4 +56,4 @@ logs:
 model_path:
   path: /../models/multi_all_model_opt.pth
 file_path:
-  path: /../text_report/test_validation.csv
+  path: /../data/german_sink_validation_balanced.csv

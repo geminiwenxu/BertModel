@@ -31,33 +31,29 @@ def prediction(model_path, file_path):
     model.load_state_dict(torch.load(model_path, map_location=lambda storage, loc: storage).module.state_dict())
     model = model.to(device)
     tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-cased', do_lower_case=False)
-    predict = []
     L = []
     for index, row in df.iterrows():
-        encoded_review = tokenizer.encode_plus(row['text'],
-                                               add_special_tokens=True,
-                                               max_length=160,
-                                               return_token_type_ids=False,
-                                               padding='max_length',
-                                               truncation=True,
-                                               return_attention_mask=True,
-                                               return_tensors='pt')
-        input_ids = encoded_review['input_ids'].to(device)
+        try:
+            encoded_review = tokenizer.encode_plus(row['text'],
+                                                   add_special_tokens=True,
+                                                   max_length=160,
+                                                   return_token_type_ids=False,
+                                                   padding='max_length',
+                                                   truncation=True,
+                                                   return_attention_mask=True,
+                                                   return_tensors='pt')
+            input_ids = encoded_review['input_ids'].to(device)
 
-        attention_mask = encoded_review['attention_mask'].to(device)
-        output = model(input_ids, attention_mask)
-        _, prediction = torch.max(output, dim=1)
-        pred = np.float64(prediction.cpu().detach().numpy()[0])
-        actual = np.float64(row['actual'])
+            attention_mask = encoded_review['attention_mask'].to(device)
+            output = model(input_ids, attention_mask)
+            _, prediction = torch.max(output, dim=1)
+            pred = np.float64(prediction.cpu().detach().numpy()[0])
+            actual = np.float64(row['actual'])
 
-        if pred == actual:
-            print(pred, actual)
-            print(type(pred), type(actual))
-            L.append({"actual": row['actual'], "text": row['text'], "prediction": pred})
-
-        predict.append(prediction)
-    report = classification_report(df.actual.to_list(), predict, target_names=class_names)
-    print(report)
+            if pred == actual:
+                L.append({"actual": row['actual'], "text": row['text'], "prediction": pred})
+        except ValueError:
+            print('Nan')
     correct_classified = pd.DataFrame(L)
     correct_classified.to_csv('correct_classification.csv', index=False)
     return None

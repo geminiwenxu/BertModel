@@ -57,3 +57,19 @@ model_path:
   path: /../models/multi_all_model_opt.pth
 file_path:
   path: /../data/german_sink_validation_balanced.csv
+
+feature_neg_file_path:
+  path: /../data/partial_misclassification_error_report.csv
+feature_pos_file_path:
+  path: /../data/correct_classification.csv
+feature_test_file_path:
+  path: /../data/test_validation.csv
+
+pos_feature_file_path:
+  path: /../data/pos_feature.json
+neg_feature_file_path:
+  path: /../data/neg_feature.json
+feature_file_path:
+  path: /../data/feature.json
+svm_save_path:
+  path: /../data/svm_result/

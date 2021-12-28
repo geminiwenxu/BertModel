@@ -59,8 +59,8 @@ def decision_tree(X_train, y_train, X_test):
                                                    'btadc5', 'btadc6', 'btadc7', 'btadc8', 'btadc9', 'btadc10'],
                                     class_names=['correct', 'misclassified'],
                                     filled=True)
-    graph = graphviz.Source(dot_data, format="png")
-    graph.render("decision_tree")
+    # graph = graphviz.Source(dot_data, format="png")
+    # graph.render("decision_tree")
     return y_pred
 
 
@@ -75,8 +75,8 @@ def show_confusion_matrix(confusion_matrix):
 
 
 if __name__ == "__main__":
-    neg_path = "/Users/geminiwenxu/PycharmProjects/TreePlot/neg_feature.json"
-    pos_path = "/Users/geminiwenxu/PycharmProjects/TreePlot/pos_feature.json"
+    neg_path = "/Users/wenxu/PycharmProjects/BertModel/data/neg_feature.json"
+    pos_path = "/Users/wenxu/PycharmProjects/BertModel/data/pos_feature.json"
 
     X_train, X_test, y_train, y_test = prepare_data(neg_path, pos_path)
 

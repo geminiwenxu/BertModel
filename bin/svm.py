@@ -15,14 +15,11 @@ def get_config(path: str) -> dict:
     return conf
 
 
-def main(set=5):
+def main(set=2):
     config = get_config('/../config/config.yaml')
     neg_path = resource_filename(__name__, config['neg_feature_file_path']['path'])
-    print(neg_path)
     pos_path = resource_filename(__name__, config['pos_feature_file_path']['path'])
-    print(pos_path)
     feature_path = resource_filename(__name__, config['feature_file_path']['path'])
-    print(feature_path)
 
     with open(neg_path) as f:
         neg_lines = f.readlines()
@@ -32,7 +29,7 @@ def main(set=5):
 
     with open(feature_path) as f:
         lines = f.readlines()
-    for j in range(2, set):
+    for j in range(1, set):
         array = np.arange(135)
         num_combinations = len(list(combinations(array, j)))
         print('j', j)
@@ -44,6 +41,7 @@ def main(set=5):
                 obj = json.loads(i)
                 feature_vec = np.array(obj['feature'])
                 features = list(combinations(feature_vec, j))
+                print(features)
                 feature = np.asarray(features[q])
                 feature = np.nan_to_num(feature.astype(np.float32))
                 X.append(feature)
@@ -58,7 +56,7 @@ def main(set=5):
             repdf.insert(loc=0, column='class', value=class_names + ["accuracy", "macro avg", "weighted avg"])
             save_path = resource_filename(__name__, config['svm_save_path']['path'])
             repdf.to_csv(
-                save_path+"{}.combination on {}.th feature.csv".format(j, q),
+                save_path+"{} combination on {} feature.csv".format(j, q),
                 index=False)
 
 

@@ -73,3 +73,25 @@ feature_file_path:
   path: /../data/feature.json
 svm_save_path:
   path: /../data/svm_result/
+
+feature_names:
+  ['adjpd', 'A', 'advpd', 'alpha', 'apd', 'ATL', 'ASL', 'L', 'dpd', 'H',
+    'G', 'hl', 'h', 'ipd', 'npd', 'lmbd', 'NDW', 'ppd', 'preppd', 'Q',
+    'R1', 'RR', 'RRR', 'stc', 'tc', 'ttr', 'UG', 'VD', 'vpd', 'LDEmu',
+    'depmu', 'MDDmu', 'DDEmu', 'TCImu', 'imbmu', 'Lmu', 'Wmu', 'wmu',
+    'lmu', 'cmu', 'LDEG', 'depG', 'MDDG', 'DDEG', 'TCIG', 'imbG', 'LG',
+    'WG', 'wG', 'lG', 'cG', 'LDEH', 'depH', 'MDDH', 'DDEH', 'TCIH',
+    'imbH', 'LH', 'WH', 'wH', 'lH', 'cH', 'LDErac', 'deprac', 'MDDrac',
+    'DDErac', 'TCIrac', 'imbrac', 'Lrac', 'Wrac', 'wrac', 'lrac', 'crac',
+    'LDEadc', 'depadc', 'MDDadc', 'DDEadc', 'TCIadc', 'imbadc', 'Ladc',
+    'Wadc', 'wadc', 'ladc', 'cadc', 'LDEradc', 'depradc', 'MDDradc',
+    'DDEradc', 'TCIradc', 'imbradc', 'Lradc', 'Wradc', 'wradc', 'lradc',
+    'cradc', 'LDEadtw', 'depadtw', 'MDDadtw', 'DDEadtw', 'TCIadtw',
+    'imbadtw', 'Ladtw', 'Wadtw', 'wadtw', 'ladtw', 'cadtw', 'btH',
+    'btlH', 'btsH', 'btlsH', 'bth', 'btdfa', 'btly', 'btrac', 'btradc',
+    'btac1', 'btac2', 'btac3', 'btac4', 'btac5', 'btac6', 'btac7',
+    'btac8', 'btac9', 'btac10', 'btadc1', 'btadc2', 'btadc3', 'btadc4',
+    'btadc5', 'btadc6', 'btadc7', 'btadc8', 'btadc9', 'btadc10' ]
+
+the_file_path:
+  path: /../data/plaintext_dataset/

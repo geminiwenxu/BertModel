@@ -2,10 +2,10 @@ from pkg_resources import resource_filename
 import yaml
 import json
 import pandas as pd
-from bin.feature_generator import Scorer
-from bin.feature_generator import ADJPD, AdjustedModulus, ADVPD, Alpha, APD, ATL, AutoBERTT, AutoBERTS, ASL
-from bin.feature_generator import CurveLength, DPD, Entropy, Gini, HL, HPoint, IPD, NPD, Lambda, lmbd, NDW
-from bin.feature_generator import PPD, PREPPD, Q, R1, RR, RRR, STC, Syn, TC, TypeTokenRatio, uniquegrams, VD, VPD
+from feature.feature_generator import Scorer
+from feature.feature_generator import ADJPD, AdjustedModulus, ADVPD, Alpha, APD, ATL, AutoBERTT, ASL
+from feature.feature_generator import CurveLength, DPD, Entropy, Gini, HL, HPoint, IPD, NPD, Lambda, lmbd, NDW
+from feature.feature_generator import PPD, PREPPD, Q, R1, RR, RRR, STC, Syn, TC, TypeTokenRatio, uniquegrams, VD, VPD
 from transformers import BertTokenizer
 
 print("Start")

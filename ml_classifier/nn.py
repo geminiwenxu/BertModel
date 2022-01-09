@@ -39,7 +39,7 @@ def prepare_data(neg_path, pos_path):
     X_train = np.array(X_train)
     X_test = np.array(X_test)
     y_train = np.array(y_train)
-    y_test= np.array(y_test)
+    y_test = np.array(y_test)
     print(len(X_train), len(X_test), len(y_train), len(y_test))
     return X_train, X_test, y_train, y_test
 
@@ -58,6 +58,7 @@ def nn(X_train, X_test, y_train, y_test):
     y_pred_bool = np.argmax(y_pred, axis=1)
 
     print(classification_report(y_test, y_pred_bool))
+
 
 if __name__ == "__main__":
     config = get_config('/../config/config.yaml')

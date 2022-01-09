@@ -1,12 +1,10 @@
 from MLFeatureSelection import importance_selection
 from sklearn.tree import DecisionTreeClassifier
-from svc import get_config
+from ml_classifier.svc import get_config
 import json
 import numpy as np
 from pkg_resources import resource_filename
 import pandas as pd
-from tensorflow import keras
-from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
 
 

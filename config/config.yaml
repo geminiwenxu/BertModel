@@ -70,12 +70,12 @@ pos_feature_file_path:
 neg_feature_file_path:
   path: /../data/neg_feature.json
 feature_file_path:
-  path: /../data/feature.json
+  path: /../data/feature_test.json
 svm_save_path:
   path: /../data/svm_result/
 
 feature_names:
-  ['adjpd', 'A', 'advpd', 'alpha', 'apd', 'ATL', 'ASL', 'L', 'dpd', 'H',
+  [ 'adjpd', 'A', 'advpd', 'alpha', 'apd', 'ATL', 'ASL', 'L', 'dpd', 'H',
     'G', 'hl', 'h', 'ipd', 'npd', 'lmbd', 'NDW', 'ppd', 'preppd', 'Q',
     'R1', 'RR', 'RRR', 'stc', 'tc', 'ttr', 'UG', 'VD', 'vpd', 'LDEmu',
     'depmu', 'MDDmu', 'DDEmu', 'TCImu', 'imbmu', 'Lmu', 'Wmu', 'wmu',

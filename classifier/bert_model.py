@@ -1,5 +1,5 @@
 import torch.nn as nn
-from pytorch_pretrained_bert import BertModel
+from transformers import BertModel
 
 
 class BertBinaryClassifier(nn.Module):

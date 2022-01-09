@@ -62,15 +62,11 @@ feature_neg_file_path:
   path: /../data/partial_misclassification_error_report.csv
 feature_pos_file_path:
   path: /../data/correct_classification.csv
-feature_test_file_path:
-  path: /../data/test_validation.csv
 
 pos_feature_file_path:
-  path: /../data/pos_feature.json
+  path: /../data/pos_feature_test.json
 neg_feature_file_path:
-  path: /../data/neg_feature.json
-feature_file_path:
-  path: /../data/feature_test.json
+  path: /../data/neg_feature_test.json
 svm_save_path:
   path: /../data/svm_result/
 

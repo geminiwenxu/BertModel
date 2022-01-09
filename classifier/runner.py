@@ -10,8 +10,8 @@ from pkg_resources import resource_filename
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased', do_lower_case=True)
-BATCH_SIZE = 1
-EPOCHS = 3
+BATCH_SIZE = 50
+EPOCHS = 1
 bert_clf = BertBinaryClassifier()
 bert_clf.to(device)
 optimizer = torch.optim.Adam(bert_clf.parameters(), lr=3e-6)
@@ -58,46 +58,6 @@ def main():
             all_logits += list(numpy_logits[:, 0])
 
     print(classification_report(dev_y, bert_predicted))
-
-    # test model
-    def get_config(path):
-        with open(resource_filename(__name__, path), 'r') as stream:
-            conf = yaml.safe_load(stream)
-        return conf
-
-    config = get_config('/../config/config.yaml')
-    test_path = resource_filename(__name__, config['test']['path'])
-    result = []
-    f = open(test_path)
-    data = json.load(f)
-    for i in data:
-        dict = {}
-        review_text = i['text']
-        prediction_id = i['index']
-        index = i['index']
-        encoded_review = tokenizer.encode_plus(
-            review_text,
-            max_length=512,
-            add_special_tokens=True,
-            return_token_type_ids=False,
-            pad_to_max_length=True,
-            return_attention_mask=True,
-            return_tensors='pt',
-        )
-
-        token_ids = encoded_review['input_ids'].to(device)
-        attention_mask = encoded_review['attention_mask'].to(device)
-
-        output = bert_clf(token_ids, attention_mask)
-        _, prediction = torch.max(output, dim=1)
-        prediction = class_names[prediction]
-
-        dict['prediction_id'] = prediction_id
-        dict['prediction'] = prediction
-        dict['index'] = index
-        result.append(dict)
-    with open("submission.json", "w", encoding='utf-8') as f:
-        json.dump(result, f, ensure_ascii=False, indent=4)
 
 
 if __name__ == '__main__':

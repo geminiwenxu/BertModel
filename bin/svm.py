@@ -20,6 +20,7 @@ def main(set=2):
     neg_path = resource_filename(__name__, config['neg_feature_file_path']['path'])
     pos_path = resource_filename(__name__, config['pos_feature_file_path']['path'])
     feature_path = resource_filename(__name__, config['feature_file_path']['path'])
+    print(neg_path)
 
     with open(neg_path) as f:
         neg_lines = f.readlines()

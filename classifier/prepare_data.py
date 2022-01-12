@@ -77,7 +77,3 @@ def prepare_data(BATCH_SIZE):
     dev_dataloader = torch.utils.data.DataLoader(dev_dataset, sampler=dev_sampler, batch_size=BATCH_SIZE, num_workers=4)
 
     return train_dataloader, train_data, dev_dataloader, dev_data, dev_y
-
-
-if __name__ == '__main__':
-    prepare_data(1)

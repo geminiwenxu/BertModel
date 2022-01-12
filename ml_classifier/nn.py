@@ -46,7 +46,7 @@ def prepare_data(neg_path, pos_path):
 
 def nn(X_train, X_test, y_train, y_test):
     model = Sequential()
-    model.add(Dense(12, input_dim=135, activation='relu'))
+    model.add(Dense(120, input_dim=135, activation='relu'))
     model.add(Dense(8, activation='relu'))
     model.add(Dense(1, activation='sigmoid'))
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['acc'])

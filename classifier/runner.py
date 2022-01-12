@@ -16,7 +16,6 @@ bert_clf = BertBinaryClassifier()
 bert_clf.to(device)
 optimizer = torch.optim.Adam(bert_clf.parameters(), lr=3e-6)
 train_dataloader, train_data, dev_dataloader, dev_data, dev_y = prepare_data(BATCH_SIZE)
-class_names = ['human written', 'machine written']
 
 
 def main():

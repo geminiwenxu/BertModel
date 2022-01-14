@@ -67,6 +67,8 @@ pos_feature_file_path:
   path: /../data/pos_feature.json
 neg_feature_file_path:
   path: /../data/neg_feature.json
+feature_file_path:
+  path: /../data/feature.json
 svm_save_path:
   path: /../data/svm_result/
 

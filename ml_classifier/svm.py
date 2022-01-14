@@ -42,7 +42,6 @@ def main(set=2):
                 obj = json.loads(i)
                 feature_vec = np.array(obj['feature'])
                 features = list(combinations(feature_vec, j))
-                print(features)
                 feature = np.asarray(features[q])
                 feature = np.nan_to_num(feature.astype(np.float32))
                 X.append(feature)

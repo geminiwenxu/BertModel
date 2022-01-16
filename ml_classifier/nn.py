@@ -6,7 +6,6 @@ import json
 from sklearn.model_selection import train_test_split
 import numpy as np
 from sklearn.metrics import classification_report
-from keras import backend as K
 import tensorflow as tf
 from tensorflow import keras
 from keras.layers import Dropout
@@ -77,15 +76,11 @@ def nn(X_train, X_test, y_train, y_test):
     y_pred = model.predict(X_test)
     y_pred_bool = []
     for i, predicted in enumerate(y_pred):
-        print(i)
-        print(predicted)
         if predicted[0] > 0.5:
             y_pred_bool.append(1)
         else:
             y_pred_bool.append(0)
 
-    print(y_pred)
-    print(y_pred_bool)
     print(classification_report(y_test, y_pred_bool))
 
 

@@ -9,4 +9,4 @@ cache/
 /__pycache__/
 *.pyc
 *.log
-
+ml_classifier/wandb/

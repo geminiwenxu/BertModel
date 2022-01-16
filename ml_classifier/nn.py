@@ -96,33 +96,4 @@ if __name__ == "__main__":
     X_train, X_test, y_train, y_test = prepare_data(neg_path, pos_path)
     nn(X_train, X_test, y_train, y_test)
 
-    # from sklearn.datasets import load_breast_cancer
-    #
-    # X, y = load_breast_cancer(return_X_y=True)
-    # neg = 0
-    # pos = 0
-    # for i in y:
-    #     if i == 0:
-    #         neg += 1
-    #     else:
-    #         pos += 1
-    # print(neg, pos)
-    #
-    # X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0, stratify=y)
-    # X_train = np.array(X_train)
-    # X_test = np.array(X_test)
-    # y_train = np.array(y_train)
-    # y_test = np.array(y_test)
-    # model = Sequential()
-    # model.add(Dense(1, input_dim=len(X_train[0, :]), activation='sigmoid'))
-    # # model.add(Dense(8, activation='relu'))
-    # # model.add(Dense(1, activation='sigmoid'))
-    # model.compile(loss='binary_crossentropy', optimizer='SGD', metrics=['accuracy'])
-    # model.summary()
-    # model.fit(X_train, y_train, epochs=150, batch_size=10)
-    # print(X_test)
-    # y_pred = model.predict(X_test)
-    # print(y_pred)
-    # y_pred_bool = y_pred.astype(np.int)
-    # print(y_pred_bool)
-    # print(classification_report(y_test, y_pred, target_names=['incorrect', 'correct']))
+

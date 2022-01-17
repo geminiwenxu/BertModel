@@ -15,8 +15,8 @@ def model():
     model.add(Dense(100, input_dim=135, activation='relu', kernel_constraint=maxnorm(3)))
     model.add(Dense(80, activation='relu', kernel_constraint=maxnorm(3)))
     model.add(Dropout(0.2))
-    model.add(Dense(60, activation='relu', kernel_constraint=maxnorm(3)))
-    model.add(Dense(40, activation='relu', kernel_constraint=maxnorm(3)))
+    model.add(Dense(60, activation='relu'))
+    model.add(Dense(40, activation='relu'))
     model.add(Dense(20, activation='relu', kernel_constraint=maxnorm(3)))
     model.add(Dense(4, activation='relu', kernel_constraint=maxnorm(3)))
     model.add(Dense(1, activation='sigmoid'))
@@ -26,8 +26,9 @@ def model():
 if __name__ == "__main__":
     # initializing wandb with your project name
     run = wandb.init(project="my-nn-project", entity="wenxu",
-                     config={'learning_rate': 0.001,
-                             'epochs': 100,
+                     config={'method': 'bayes',
+                             'learning_rate': 0.001,
+                             'epochs': 1000,
                              'batch_size': 64,
                              'loss_function': 'binary_crossentropy',
                              'architecture': 'CNN'})

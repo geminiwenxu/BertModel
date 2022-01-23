@@ -1,5 +1,4 @@
 import json
-
 import graphviz
 import matplotlib.pyplot as plt
 import numpy as np
@@ -9,6 +8,14 @@ from sklearn import tree
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
+from pkg_resources import resource_filename
+import yaml
+
+
+def get_config(path: str) -> dict:
+    with open(resource_filename(__name__, path), 'r') as stream:
+        conf = yaml.safe_load(stream)
+    return conf
 
 
 def prepare_data(neg_path, pos_path):
@@ -75,8 +82,9 @@ def show_confusion_matrix(confusion_matrix):
 
 
 if __name__ == "__main__":
-    neg_path = "/data/neg_feature.json"
-    pos_path = "/data/pos_feature.json"
+    config = get_config('/../config/config.yaml')
+    neg_path = resource_filename(__name__, config['neg_feature_file_path']['path'])
+    pos_path = resource_filename(__name__, config['pos_feature_file_path']['path'])
 
     X_train, X_test, y_train, y_test = prepare_data(neg_path, pos_path)
 

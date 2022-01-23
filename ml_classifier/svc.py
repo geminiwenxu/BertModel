@@ -29,12 +29,10 @@ def main():
                    'btac2', 'btac10', 'alpha',
                    'Lradc', 'cG', 'btrac', 'btadc9', 'btac4', 'DDEradc', 'deprac', 'depG']
 
-    '''all decision feature from decision tree'''
     ls_index = []  # 0.62
     for i in ls_features:
         index = feature_names.index(i)
         ls_index.append(index)
-    '''single feature achiving greater than 0.59 f1 score'''
     ls_first_feature = [2, 4, 7, 9, 15, 28, 44, 45, 51, 52, 54, 56, 57, 58, 61, 84, 85, 86, 87, 90, 91, 92, 94,
                         106]  # 0.61
     best_features_combination = [2, 15, 52, 106]  # 0.59
@@ -45,17 +43,17 @@ def main():
     with open(pos_path) as f:
         pos_lines = f.readlines()
     Y = [0] * len(neg_lines) + [1] * len(pos_lines)
-    print(len(Y))
 
     with open(feature_path) as f:
         lines = f.readlines()
-    '''using all useful features from decision tree or single feature list'''
+
     X = []
     for i in lines:
         obj = json.loads(i)
         feature_vec = np.array(obj['feature'])
-        features = [feature_vec[i] for i in another_best_combination]
-        feature = np.asarray(features)
+        features = [feature_vec[i] for i in
+                    another_best_combination]  # using all useful features from decision tree or single feature list skip this line
+        feature = np.asarray(features)  # feature_vec instead of features
         feature = np.nan_to_num(feature.astype(np.float32))
         X.append(feature)
     X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
@@ -64,6 +62,7 @@ def main():
     y_pred = clf.predict(X_test)
 
     class_names = ['correct_classified', 'misclassified']
+    print(classification_report(y_test, y_pred))
     report_dict = classification_report(y_test, y_pred, output_dict=True)
     repdf = pd.DataFrame(report_dict).round(2).transpose()
     repdf.insert(loc=0, column='class', value=class_names + ["accuracy", "macro avg", "weighted avg"])
@@ -72,42 +71,6 @@ def main():
         save_path + "best combination of features.csv",
         index=False)
 
-    # for j in range(4, 25):
-    #     num_combinations = len(list(combinations(ls_first_feature, j)))
-    #     print('j', j)
-    #     print('number of combinations: ', num_combinations)
-    #     for q in list(combinations(ls_first_feature, j)):
-    #         print('feature index', q)
-    #         X = []
-    #         for i in lines:
-    #             obj = json.loads(i)
-    #             feature_vec = np.array(obj['feature'])
-    #             feature = np.asarray([feature_vec[i] for i in q])
-    #             feature = np.nan_to_num(feature.astype(np.float32))
-    #             X.append(feature)
-    #
-    #         X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
-    #         clf = SVC(gamma='auto', cache_size=500)
-    #         clf.fit(X_train, y_train)
-    #         y_pred = clf.predict(X_test)
-    #
-    #         class_names = ['correct_classified', 'misclassified']
-    #         report_dict = classification_report(y_test, y_pred, output_dict=True)
-    #         repdf = pd.DataFrame(report_dict).round(2).transpose()
-    #         repdf.insert(loc=0, column='class', value=class_names + ["accuracy", "macro avg", "weighted avg"])
-    #         save_path = resource_filename(__name__, config['svm_save_path']['path'])
-    #         repdf.to_csv(
-    #             save_path + "{} {} combination of single useful feature.csv".format(j, q),
-    #             index=False)
-
 
 if __name__ == "__main__":
-    # for j in range(1, 2):
-    #     array = np.arange(135)
-    #     num_combinations = len(list(combinations(array, j)))
-    #     print('j', j)
-    #     print('number of combination', num_combinations)
-    #     for q in range(0, num_combinations):
-    #         print('q', q)
-
     main()

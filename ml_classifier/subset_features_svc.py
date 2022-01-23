@@ -56,17 +56,9 @@ def main(set=2):
             repdf.insert(loc=0, column='class', value=class_names + ["accuracy", "macro avg", "weighted avg"])
             save_path = resource_filename(__name__, config['svm_save_path']['path'])
             repdf.to_csv(
-                save_path+"{} combination on {} feature.csv".format(j, q),
+                save_path + "{} combination on {} feature.csv".format(j, q),
                 index=False)
 
 
 if __name__ == "__main__":
-    # for j in range(1, 2):
-    #     array = np.arange(135)
-    #     num_combinations = len(list(combinations(array, j)))
-    #     print('j', j)
-    #     print('number of combination', num_combinations)
-    #     for q in range(0, num_combinations):
-    #         print('q', q)
-
     main()

@@ -28,10 +28,10 @@ if __name__ == "__main__":
     run = wandb.init(project="my-nn-project", entity="wenxu",
                      config={'method': 'bayes',
                              'learning_rate': 0.001,
-                             'epochs': 1000,
+                             'epochs': 100,
                              'batch_size': 64,
-                             'loss_function': 'binary_crossentropy',
-                             'architecture': 'CNN'})
+                             'loss_function': 'binary_crossentropy'
+                             })
     config = wandb.config
     # prepare data
     Config = get_config('/../config/config.yaml')

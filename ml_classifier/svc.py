@@ -54,7 +54,7 @@ def main():
         ls_names.append(name)
     print(ls_names)
     ls_index = []
-    for i in semantic_features:  # using different features
+    for i in decision_features:  # using different features
         index = feature_names.index(i)
         ls_index.append(index)
 

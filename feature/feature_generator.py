@@ -1849,8 +1849,7 @@ class Scorer():
 
                 names += names_berts
 
-        scores = list(map(float, scores))
-
+        scores = list(map(float, scores[0]))
 
         return scores, names, text_hash
 
@@ -1867,11 +1866,11 @@ if __name__ == "__main__":
     #                  CurveLength(), DPD(), Entropy(), Gini(), HL(), HPoint(), IPD(), NPD(), Lambda(),
     #                  lmbd(), NDW(), PPD(), PREPPD(), Q(), R1(), RR(), RRR(), STC(), Syn(), TC(),
     #                  TypeTokenRatio(), uniquegrams(), VD(), VPD()])
-    scores, names, text_hash = sc.run("de", "dummy", "Fiona und Marc Sauer* sind erschöpft. Müde. Ausgelaugt. Angespannt. Die Eltern haben für ihren Sohn Maximilian*, sieben Jahre alt, keinen Betreuungsplatz am Nachmittag gefunden. Das heißt: Der Erstklässler kommt seit September - an den meisten Tagen - um 11.30 Uhr von der Schule nach Hause. Fiona und Marc Sauer sind aber beide berufstätig.")
+    scores, names, text_hash = sc.run("de", "dummy",
+                                      "Fiona und Marc Sauer* sind erschöpft. Müde. Ausgelaugt. Angespannt. Die Eltern haben für ihren Sohn Maximilian*, sieben Jahre alt, keinen Betreuungsplatz am Nachmittag gefunden. Das heißt: Der Erstklässler kommt seit September - an den meisten Tagen - um 11.30 Uhr von der Schule nach Hause. Fiona und Marc Sauer sind aber beide berufstätig.")
     print(scores)
     print(len(scores))
 
     print(names)
     print(len(names))
     print(text_hash)
-

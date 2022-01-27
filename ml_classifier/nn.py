@@ -122,6 +122,8 @@ def nn(X_train, X_test, y_train, y_test):
             y_pred_bool.append(0)
 
     print(classification_report(y_test, y_pred_bool))
+    loss, f1 = model.evaluate(X_test, y_test, verbose=0)
+    return f1
 
 
 if __name__ == "__main__":
@@ -129,6 +131,5 @@ if __name__ == "__main__":
     neg_path = resource_filename(__name__, config['neg_feature_file_path']['path'])
     pos_path = resource_filename(__name__, config['pos_feature_file_path']['path'])
     X_train, X_test, y_train, y_test = prepare_data(neg_path, pos_path)
-    nn(X_train, X_test, y_train, y_test)
-
-
+    f1 = nn(X_train, X_test, y_train, y_test)
+    print(f1)

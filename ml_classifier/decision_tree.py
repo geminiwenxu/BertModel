@@ -10,6 +10,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from pkg_resources import resource_filename
 import yaml
+from genetic_selection import GeneticSelectionCV
 
 
 def get_config(path: str) -> dict:
@@ -36,15 +37,22 @@ def prepare_data(neg_path, pos_path):
         feature = np.array(obj['feature'])
         feature = np.nan_to_num(feature.astype(np.float32))
         X.append(feature)
-    print(len(X))
     X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
     return X_train, X_test, y_train, y_test
 
 
 def decision_tree(X_train, y_train, X_test):
     clf = DecisionTreeClassifier(max_depth=6, random_state=0)
-    clf = clf.fit(X_train, y_train)
-    y_pred = clf.predict(X_test)
+    model = GeneticSelectionCV(clf, cv=5, verbose=0,
+                               scoring="accuracy", max_features=100,
+                               n_population=100, crossover_proba=0.5,
+                               mutation_proba=0.2, n_generations=50,
+                               crossover_independent_proba=0.5,
+                               mutation_independent_proba=0.04,
+                               tournament_size=3, n_gen_no_change=10,
+                               caching=True, n_jobs=-1)
+    model = model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
 
     dot_data = tree.export_graphviz(clf, out_file=None,
                                     feature_names=['adjpd', 'A', 'advpd', 'alpha', 'apd', 'ATL', 'ASL', 'L', 'dpd', 'H',

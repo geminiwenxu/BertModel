@@ -9,6 +9,9 @@ from sklearn_genetic import GAFeatureSelectionCV
 import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score
 import pandas as pd
+from sklearn.metrics import f1_score
+from sklearn.svm import SVC
+
 
 def get_config(path: str) -> dict:
     with open(resource_filename(__name__, path), 'r') as stream:
@@ -39,9 +42,9 @@ def ea(neg_path, pos_path):
     X_test = np.array(X_test)
     y_train = np.array(y_train)
     y_test = np.array(y_test)
-    # dataset = pd.concat(X_train, X_test, axis=0)
-    # dataset = pd.get_dummies(dataset)
-    clf = DecisionTreeClassifier(max_depth=6, random_state=0)
+    # clf = DecisionTreeClassifier(max_depth=6, random_state=0)
+    # clf = RandomForestClassifier(max_depth=2, random_state=0)
+    clf = SVC(gamma='auto', cache_size=500)
     evolved_estimator = GAFeatureSelectionCV(estimator=clf, cv=3, scoring=None, population_size=50, generations=80,
                                              crossover_probability=0.8, mutation_probability=0.2, tournament_size=3,
                                              elitism=True, max_features=100, verbose=True, keep_top_k=1,
@@ -53,6 +56,7 @@ def ea(neg_path, pos_path):
     print(features)
     y_predict_ga = evolved_estimator.predict(X_test[:, features])
     print(accuracy_score(y_test, y_predict_ga))
+    print(f1_score(y_test, y_predict_ga, average=None))
 
 
 if __name__ == "__main__":

@@ -1,10 +1,8 @@
 import torch
 from transformers import BertTokenizer, BertModel
-import matplotlib.pyplot as plt
 
-if __name__ == "__main__":
-    text = "After stealing money from the bank vault, the bank robber was seen " \
-           "fishing on the Mississippi river bank."
+
+def embeddings(text):
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
     marked_text = "[CLS] " + text + " [SEP]"
     tokenized_text = tokenizer.tokenize(marked_text)
@@ -53,3 +51,8 @@ if __name__ == "__main__":
         token_vecs_cat.append(cat_vec)
     print(token_vecs_cat)
     print('Shape is: %d x %d' % (len(token_vecs_cat), len(token_vecs_cat[0])))  # Shape is: 22 x 3072
+
+
+if __name__ == "__main__":
+    text = ""
+    embeddings(text)

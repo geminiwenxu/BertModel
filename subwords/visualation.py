@@ -6,7 +6,8 @@ import os
 import pandas as pd
 
 
-def get_pacmap_pca_tsne_word_vs_x(word_vec_list: list, other_emb: list, legend_names: list, output_dir: str, name_title: str):
+def get_pacmap_pca_tsne_word_vs_x(word_vec_list: list, other_emb: list, legend_names: list, output_dir: str,
+                                  name_title: str):
     y_list = []
     x_list = []
     label = 0
@@ -36,7 +37,8 @@ def get_pacmap_pca_tsne_word_vs_x(word_vec_list: list, other_emb: list, legend_n
 
 
 def get_visualisation(X_r, labels, legend_names, output_dir, name_title):
-    color_labels = ["red", "green", "blue", "saddlebrown", "indigo", "gray", "darkorange", "gold", "olive",  "aquamarine", "steelblue",  "blueviolet", "rosybrown"]
+    color_labels = ["red", "green", "blue", "saddlebrown", "indigo", "gray", "darkorange", "gold", "olive",
+                    "aquamarine", "steelblue", "blueviolet", "rosybrown"]
     # X_r = transformers.fit_transform(embeddings)
     lw = 2
     fig, ax = plt.subplots()
@@ -60,22 +62,9 @@ def get_visualisation(X_r, labels, legend_names, output_dir, name_title):
 
 
 if __name__ == "__main__":
-    # word_vec_list = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-    # # other_emb = [[[7, 8, 9], [10, 11, 12]], [[13, 14, 15], [16, 17, 18]]]
-    # legend_names = ['a']
-    # output_dir = '/Users/wenxu/PycharmProjects/BertModel/subwords'
-    # name_title = 'this'
-    # get_pacmap_pca_tsne_word_vs_x(word_vec_list, legend_names, output_dir, name_title)
-
-    config = get_config('/../config/config.yaml')
-    neg_path = resource_filename(__name__, config['neg_feature_file_path']['path'])
-    pos_path = resource_filename(__name__, config['pos_feature_file_path']['path'])
-
-    X_train, X_test, y_train, y_test = prepare_data(neg_path, pos_path)
-    word_vec_list = X_train
-    # legend_names = [str(i) for i in range(0, 135)]
-    legend_names = ['a']
+    word_vec_list = [[1, 2, 3]]
+    other_emb = [[[7, 8, 9]], [[16, 17, 18]]]
+    legend_names = ['a', 'b', 'c']
     output_dir = '/Users/wenxu/PycharmProjects/BertModel/subwords'
     name_title = 'this'
-
-    get_pacmap_pca_tsne_word_vs_x(word_vec_list, legend_names, output_dir, name_title)
+    get_pacmap_pca_tsne_word_vs_x(word_vec_list, other_emb, legend_names, output_dir, name_title)

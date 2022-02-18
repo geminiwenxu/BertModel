@@ -32,7 +32,7 @@ def get_pacmap_pca_tsne_word_vs_x(word_vec_list: list, other_emb: list, legend_n
     out_pacmap = output_dir.replace(".png", "_PaCMAP.png")
     out_tsne = output_dir.replace(".png", "_TSNE.png")
     os.makedirs(os.path.dirname(out_pca), exist_ok=True)
-    get_visualisation(X_r_pca, y_list, legend_names, out_pca, f"PCA {name_title}")
+    # get_visualisation(X_r_pca, y_list, legend_names, out_pca, f"PCA {name_title}")
     # get_visualisation(X_r_pacmap, y_list, legend_names, out_pacmap, f"PaCMAP {name_title}")
     get_visualisation(X_r_t_sne, y_list, legend_names, out_tsne, f"TSNE {name_title}")
 
@@ -52,7 +52,7 @@ def get_visualisation(X_r, labels, legend_names, output_dir, name_title):
         x_axis[labels[c]].append(X_r[c][0])
         y_axis[labels[c]].append(X_r[c][1])
     for index, target_name in zip(range(0, len(x_axis)), legend_names):
-        ax.scatter(x_axis[index], y_axis[index], c=color_labels[index], cmap='viridis', alpha=0.5, lw=lw,
+        ax.scatter(x_axis[index], y_axis[index], c=color_labels[index], alpha=0.5, lw=lw,
                    label=target_name,
                    s=10)
     legend_ax = ax.legend(bbox_to_anchor=(1.05, 1), loc=2, shadow=True, scatterpoints=1)

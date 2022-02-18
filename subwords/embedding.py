@@ -4,9 +4,9 @@ from transformers import BertTokenizer, BertModel
 
 def embeddings(text):
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-    marked_text = "[CLS] " + text + " [SEP]"
+    # marked_text = "[CLS] " + text + " [SEP]"
+    marked_text = text
     tokenized_text = tokenizer.tokenize(marked_text)
-    print(tokenized_text)
     indexed_tokens = tokenizer.convert_tokens_to_ids(tokenized_text)
     # print(indexed_tokens, len(indexed_tokens))
 
@@ -52,7 +52,7 @@ def embeddings(text):
         token_vecs_cat.append(cat_vec)
     # print(token_vecs_cat)
     print('Shape is: %d x %d' % (len(token_vecs_cat), len(token_vecs_cat[0])))  # Shape is: 22 x 3072
-    return token_vecs_cat
+    return token_vecs_cat, tokenized_text
 
 
 if __name__ == "__main__":

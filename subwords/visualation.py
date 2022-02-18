@@ -38,12 +38,8 @@ def get_pacmap_pca_tsne_word_vs_x(word_vec_list: list, other_emb: list, legend_n
 
 
 def get_visualisation(X_r, labels, legend_names, output_dir, name_title):
-    # color_labels = ["red", "green", "blue", "saddlebrown", "indigo", "gray", "darkorange", "gold", "olive",
-    #                 "aquamarine", "steelblue", "blueviolet", "rosybrown"]
-    from subwords.runner import this
-    sentence_embeddings = this()
-    color_labels = np.arange(0, len(sentence_embeddings) * 10, 10)
-    print(color_labels)
+    color_labels = ["red", "green", "blue", "saddlebrown", "indigo", "gray", "darkorange", "gold", "olive",
+                    "aquamarine", "steelblue", "blueviolet", "rosybrown"]
     # X_r = transformers.fit_transform(embeddings)
     lw = 2
     fig, ax = plt.subplots()

@@ -1,4 +1,4 @@
-from ml_classifier.decision_tree import get_config
+from ml_classifier.svc import get_config
 import pandas as pd
 from pkg_resources import resource_filename
 from subwords.embedding import embeddings
@@ -14,7 +14,7 @@ def sentence_em():
     feature_pos_file_path = resource_filename(__name__, config['feature_pos_file_path']['path'])
     feature_test_file_path = resource_filename(__name__, config['feature_test_file_path']['path'])
 
-    df = pd.read_csv(feature_test_file_path, sep=';')
+    df = pd.read_csv(feature_neg_file_path, sep=';')
     result = df.drop("Unnamed: 0", axis=1)
     ls_wrong = []
     ls_correct = []
@@ -70,10 +70,9 @@ def sentence_em():
     print("flag", flat_ls_wrong)
     print("correct", flat_ls_correct)
     legend_names = ['wrong', 'correct']
-    output_dir = '/Users/wenxu/PycharmProjects/BertModel/subwords'
-    name_title = 'this'
+    output_dir = resource_filename(__name__, config['output_dir']['path'])
+    name_title = 'subword embeddings'
     get_pacmap_pca_tsne_word_vs_x(flat_ls_wrong, [flat_ls_correct], legend_names, output_dir, name_title)
-
 
     # df = pd.read_csv(feature_pos_file_path, sep=',')
     # for index, row in df.iterrows():

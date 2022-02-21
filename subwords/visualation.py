@@ -64,10 +64,5 @@ def get_visualisation(X_r, labels, legend_names, output_dir, name_title):
     plt.close(fig)
 
 
-if __name__ == "__main__":
-    word_vec_list = [[1, 2, 3]]
-    other_emb = [[[7, 8, 9]], [[16, 17, 18]]]
-    legend_names = ['a', 'b', 'c']
-    output_dir = '/Users/wenxu/PycharmProjects/BertModel/subwords'
-    name_title = 'this'
-    get_pacmap_pca_tsne_word_vs_x(word_vec_list, other_emb, legend_names, output_dir, name_title)
+
+

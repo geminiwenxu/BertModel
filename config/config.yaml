@@ -92,3 +92,6 @@ feature_names:
     'btac1', 'btac2', 'btac3', 'btac4', 'btac5', 'btac6', 'btac7',
     'btac8', 'btac9', 'btac10', 'btadc1', 'btadc2', 'btadc3', 'btadc4',
     'btadc5', 'btadc6', 'btadc7', 'btadc8', 'btadc9', 'btadc10' ]
+
+output_dir:
+  path: /../data/fig
